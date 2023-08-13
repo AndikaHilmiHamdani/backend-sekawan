@@ -21,6 +21,11 @@ class RoleSeeder extends Seeder
             'guard_name'=>'web'
         ]);
         Role::create([
+            // 'team_id'=>1,
+            'name'=>'driver',
+            'guard_name'=>'web'
+        ]);
+        Role::create([
             // 'team_id'=>2,
             'name'=>'manajer',
             'guard_name'=>'web'

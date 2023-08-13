@@ -24,6 +24,13 @@ class UserSeeder extends Seeder
         ]);
         $admin ->assignRole('admin'); 
         
+        $driver= User::create([
+            'name'=>'driver',
+            'email'=>'driver@driver.com',
+            'password'=>Hash::make('12345678'),
+        ]);
+        $driver ->assignRole('driver'); 
+        
         $manajer= User::create([
             'name'=>'manajer',
             'email'=>'manajer@manajer.com',
