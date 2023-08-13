@@ -24,3 +24,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('transaction',TransactionController::class);
 Route::put('transaction-driver/{id}',[TransactionController::class,'approve_driver'])->name('transaction-driver');
 Route::put('transaction-manajer/{id}',[TransactionController::class,'approve_manajer'])->name('transaction-manajer');
+Route::get('transaction-export', [TransactionController::class,'export'])->name('transaction-export');

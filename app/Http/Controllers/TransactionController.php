@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\TransactionExport;
 use App\Models\Car;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TransactionController extends Controller
 {
@@ -120,5 +122,10 @@ class TransactionController extends Controller
 
         Transaction::find($id)->update($request->all());
         return redirect()->route('transaction.index');
+    }
+
+    public function export() 
+    {
+        return Excel::download(new TransactionExport, 'transaction.xlsx');
     }
 }

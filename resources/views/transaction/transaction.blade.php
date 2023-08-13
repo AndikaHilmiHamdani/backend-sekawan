@@ -19,6 +19,8 @@
     @role('admin')
     <a href="{{route('transaction.create')}}" type="button">Add</a>
     @endrole
+    <a href="{{route('transaction-export')}}" type="button">Export</a>
+
     <table class='table table-bordered'>
         <th>No</th>
         <th>Manajer Name</th>
