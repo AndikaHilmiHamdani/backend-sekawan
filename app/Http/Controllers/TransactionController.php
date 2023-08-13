@@ -105,7 +105,20 @@ class TransactionController extends Controller
         return redirect()->route('transaction.index')->with('sukses', 'data berhasil dihapus');
     }
 
-    function approve_driver() {
-        
+    function approve_driver(Request $request, string $id) {
+        $request->validate([
+            'status' => 'required',
+        ]);
+
+        Transaction::find($id)->update($request->all());
+        return redirect()->route('transaction.index');
+    }
+    function approve_manajer(Request $request, string $id) {
+        $request->validate([
+            'status' => 'required',
+        ]);
+
+        Transaction::find($id)->update($request->all());
+        return redirect()->route('transaction.index');
     }
 }

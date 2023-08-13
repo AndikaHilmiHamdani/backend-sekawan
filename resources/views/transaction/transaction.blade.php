@@ -18,6 +18,7 @@
 <div class="container-fluid py-4">
     @role('admin')
     <a href="{{route('transaction.create')}}" type="button">Add</a>
+    @endrole
     <table class='table table-bordered'>
         <th>No</th>
         <th>Manajer Name</th>
@@ -35,6 +36,7 @@
                 <td>{{$transactions->driver_names->name}}</td>
                 <td>{{$transactions->status}}</td>
                 <td>
+                    @role('admin')
                     <a class="btn btn-warning" href="{{route('transaction.edit',$transactions->id)}}" type="button">Edit</a>
                     <form action="{{route('transaction.destroy',$transactions->id)}}" method="post">
                         @csrf @method('DELETE')
@@ -42,12 +44,32 @@
 
                         <button class="btn btn-danger" type="submit">Delete</button>
                     </form>
+                    @endrole
+                    @role('driver')
+                    @if($transactions->status == "menunggu driver")
+                    <form action="{{route('transaction-driver',$transactions->id)}}" method="post">
+                        @csrf @method('PUT')
+                        <!-- Modal body -->
+                        <input hidden type="text" name="status" value="Menunggu Manajer">
+                        <button class="btn btn-warning" type="submit">ACC</button>
+                    </form>
+                    @endif
+                    @endrole
+                    @role('manajer')
+                    @if($transactions->status == "Menunggu Manajer")
+                    <form action="{{route('transaction-manajer',$transactions->id)}}" method="post">
+                        @csrf @method('PUT')
+                        <!-- Modal body -->
+                        <input hidden type="text" name="status" value="Disetujui">
+                        <button class="btn btn-warning" type="submit">ACC</button>
+                    </form>
+                    @endif
+                    @endrole
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
-    @endrole
 </div>
 
 
